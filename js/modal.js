@@ -40,17 +40,44 @@
 	const planObraSocial = document.getElementById('planObraSocial');
 	const birthday = document.getElementById('birthday');
 	
-	
+	let checkbox1= false;
+	let checkbox2= false;
 	const cbox = document.getElementById('cbox-terms');
+	const cbox_contract = document.getElementById('cbox-contract');
+	
 	
 	cbox.addEventListener('click', event => {
-		if(event.target.checked) {
+		console.log("checkbox click");
+		if((checkbox2)&&(event.target.checked)){
+			submit.disabled=false;
+			//check=true;
+			console.log("checkbox");
+		}
+		if (event.target.checked) {
+			checkbox1=true;
+		}
+		if(!event.target.checked){
+			//check=false;
+			checkbox2=false;
+			submit.disabled=true;
+		}
+	});
+
+	cbox_contract.addEventListener('click', event => {
+		console.log("checkbox click");
+		
+		if((checkbox1)&&(event.target.checked)) {
 			submit.disabled=false;
 			//check=true;
 			//console.log("checkbox");
 		}
+		if (event.target.checked) {
+			checkbox2=true;
+		}
+
 		if(!event.target.checked){
 			//check=false;
+			checkbox1=false; 
 			submit.disabled=true;
 		}
 	});

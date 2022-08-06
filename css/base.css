@@ -276,7 +276,7 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
-  vertical-align: sub;
+  /* vertical-align: sub; */
 }
 
 body {

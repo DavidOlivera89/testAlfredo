@@ -115,3 +115,7 @@ body {
 	margin-top: 5px;
 	width: 100%;
 }
+
+#form #david button:disabled {
+	background-color: grey;
+}

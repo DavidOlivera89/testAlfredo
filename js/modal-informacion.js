@@ -5,7 +5,7 @@
 	const close_informacion = document.getElementById("close-informacion");
 	const submit_informacion = document.getElementById("submit-informacion");
 	
-	submit_informacion.disabled=true;
+	submit_informacion.disabled=false;
 
 
 	var check = true;
@@ -39,9 +39,9 @@
 	// const obraSocial = document.getElementById('obraSocial');
 	// const planObraSocial = document.getElementById('planObraSocial');
 	// const birthday = document.getElementById('birthday');
-	// const cbox = document.getElementById('cbox-terms');
+	 //const cbox = document.getElementById('cbox-terms');
 	
-	cbox.addEventListener('click', event => {
+	/* cbox.addEventListener('click', event => {
 		if(event.target.checked) {
 			submit_informacion.disabled=false;
 			//check=true;
@@ -51,7 +51,7 @@
 			//check=false;
 			submit_informacion.disabled=true;
 		}
-	});
+	}); */
 	
 	/*const password = document.getElementById('password');
 	const password2 = document.getElementById('password2');
@@ -70,7 +70,7 @@
 	 const createInterested = (interested) => {
 		//console.log("estoy en el axios");
 		//axios.post('http://82.180.162.21:3001/client', interested)
-		axios.post('https://www.primacy34607735api.com.ar/interest', interested)
+		axios.post('http://localhost:3001/interested', interested)
 		.then(response => {
 		//console.log("hizo api function");
 		
@@ -82,13 +82,13 @@
 		
 
 	submit_informacion.addEventListener("click", () => {
-		/* console.log("saliu");
-		console.log("INICIALMENTE el valor de check es "+check); */
+		//console.log("saliu");
+		//console.log("INICIALMENTE el valor de check es "+check); */
 		checkInputs_informacion();
 		if (check) {
 			/* console.log("este es el interested" + interested)
 			console.log(interested); */
-			const client={
+			const interested={
 				names_informacion: names_informacion.value,
 				surname_informacion: surname_informacion.value,
 				email_informacion: email_informacion.value,
@@ -102,14 +102,14 @@
 			}
 			//console.log(client) 
 			//createInterested(interested);
-			createInterested(client);
-			
+			createInterested(interested);
+			console.log("enviado "+ interested);
 			alert("Gracias!! Sus datos han sido cargados, nos comunicaremos a la brevedad. Además si lo desea a continuación puede comunicarse por whatsaap con una operadora.");
-			window.open("https://api.whatsapp.com/send?phone=542976233642&text=Hola,%20¿qué%20tal?%20%20Me%20interesaría%20afiliarme%20a%20Primacy.%20Quiero%20que%20me%20contacten.");
+			window.open("https://api.whatsapp.com/send?phone=542974930840&text=Hola,%20¿qué%20tal?%20%20Me%20interesan%20los%20servicios%20de%20PRIMACY.%20Quisiera%20obtener%20más%20información%20sobre%20la%20afiliacion.");
 			
 		}else{
             event.preventDefault();
-			//console.log("no paso el check");
+			console.log("no paso el check");
 			check=true;
 		};
 			//
@@ -133,20 +133,14 @@
 
 	function checkInputs_informacion() {
 		// trim to remove the whitespaces
-		//console.log("entra a checks");
+		console.log("entra a checks");
 		
 		const namesValue_informacion = names_informacion.value.trim();
 		const surnameValue_informacion = surname_informacion.value.trim();
-		//const dniValue = dni.value.trim();
+	
 		const emailValue_informacion = email_informacion.value.trim();
 		const phoneValue_informacion = phone_informacion.value.trim();
-		// const adressValue = adress.value.trim();
-		// const obraSocialValue = obraSocial.value.trim();
-		// const planObraSocialValue = planObraSocial.value.trim();
-		// const birthdayValue = birthday.value.trim();
-		
-		//const passwordValue = password.value.trim();
-		//const password2Value = password2.value.trim();
+	
 		
 		if(namesValue_informacion === '') {
 			setErrorFor_informacion(names_informacion, 'Debe ingresar un nombre');
@@ -160,14 +154,7 @@
 			setSuccessFor_informacion(surname_informacion);
 		}
 
-		// if(dniValue === '') {
-		// 	setErrorFor(dni, 'Debe ingresar su dni');
-		// } else if (!isDni(dniValue)) {
-		// 	setErrorFor(dni, 'Debe ingresar un dni válido');
-		// }else{
-		// 	setSuccessFor(dni);
-		// }
-
+	
         if((emailValue_informacion === '') && (phoneValue_informacion === '')) {
 			setErrorFor_informacion(email_informacion, 'Ingrese al menos un medio de contacto');
             setErrorFor_informacion(phone_informacion, 'Ingrese al menos un medio de contacto');
@@ -189,45 +176,7 @@
 			setSuccessFor_informacion(phone_informacion);
 		}
 
-		/* if(adressValue === '') {
-			setErrorFor(adress, 'Ingrese una dirección válida');
-		} else {
-			setSuccessFor(adress);	
-		} */
-
-		/* if(obraSocialValue === '') {
-			setErrorFor(obraSocial, 'Debe ingresar una de contacto');
-		} else {
-			setSuccessFor(obraSocial);
-		}
-
-		if(planObraSocialValue === '') {
-			setErrorFor(planObraSocial, 'Debe ingresar un teléfono de contacto');
-		} else {
-			setSuccessFor(planObraSocial);
-		} */
-
-		/* if(birthdayValue === '') {
-			setErrorFor(birthday, 'Ingrese su fecha de nacimiento');
-		} else if (!isFechaValida(birthday)) {
-			setErrorFor(birthday, 'Fecha inválida. Debe ser mayor a 18 años');
-		}else{
-			setSuccessFor(birthday);
-		}
-		 */
-		/* if(passwordValue === '') {
-			setErrorFor(password, 'Password no debe ingresar en blanco.');
-		} else {
-			setSuccessFor(password);
-		}
-		
-		if(password2Value === '') {
-			setErrorFor(password2, 'Password2 no debe ngresar en blanco');
-		} else if(passwordValue !== password2Value) {
-			setErrorFor(password2, 'Passwords no coinciden');
-		} else{
-			setSuccessFor(password2);
-		} */
+	
 	}
 
 	function setErrorFor_informacion(input, message) {
@@ -253,43 +202,5 @@
 		return /^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/.test(phone_informacion);
 	}
  
-	/* function isDni(dni){
-		return /^[\d]{1,3}\.?[\d]{3,3}\.?[\d]{3,3}$/.test(dni);
-	}
-
-	function isFechaValida(birthday){
-		const fecha = new Date(birthday.value);
-		const fechaElegida=formatoFecha(fecha, 'dd/mm/yyyy');
-		const hoy = new Date();
-		const mostrar = formatoFecha(hoy, 'dd-mm-yy');
-		
-		var edad = calcularEdad(fecha, hoy);
-		
-		return edad >= 18 && edad< 130;
-	}
-
-	function formatoFecha(fecha, formato) {
-		const map = {
-			dd: fecha.getDate(),
-			mm: fecha.getMonth() + 1,
-			yy: fecha.getFullYear().toString().slice(-2),
-			yyyy: fecha.getFullYear()
-		}
 	
-		return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched])
-	}
-
-
-	function calcularEdad(fechaElegida, hoy) {
-		//var hoy = new Date();
-		//console.log(hoy);
-		//var cumpleanos = new Date(fecha_nacimiento);
-		//console.log("get full year "+ hoy.getFullYear());
-		var edad = hoy.getFullYear() - fechaElegida.getFullYear();
-		var m = hoy.getMonth() - fechaElegida.getMonth();
-		if (m < 0 || (m === 0 && hoy.getDate() < fechaElegida.getDate())) {
-			edad--;
-		}
-		return edad;
-	} */
 
